@@ -35,9 +35,12 @@ def hit?(total)
   input = get_user_input
   if (input == 'h')
     total += deal_card
-  elsif (input != 's')#neither 's' or 'h' inputted
+  elsif (input == 's')
+    #do nothing
+  elsif (input != 's' && input != 'h')#neither 's' or 'h' inputted
     invalid_command
-    #REMOVED prompt_user -- already repeats when funtion loops in runner
+    prompt_user
+    get_user_input
   end
   total 
 end
@@ -55,7 +58,8 @@ def runner
   total = initial_round
   until total >= 21
     total = hit?(total)
-    end
+    display_card_total(total)
+  end
   end_game(total)
 end
-runner
+
